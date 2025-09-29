@@ -11,7 +11,13 @@ from Database_main.route.movie_route import movie_bp
 from Database_main.route.movie_actor_route import movie_actor_bp
 from Database_main.route.movie_genre_route import movie_genre_bp
 from Database_main.route.TableRoutes import table_bp
-from __init__ import create_app
+
+from Database_main import create_app
+
+app = create_app()
+
+if __name__ == "__main__":
+    app.run(debug=True)
 
 app = create_app()
 
@@ -29,4 +35,3 @@ app.register_blueprint(table_bp)
 
 if __name__ == '__main__':
     app.run(debug=False)
-
