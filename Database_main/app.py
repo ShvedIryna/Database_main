@@ -1,5 +1,4 @@
 from flask import Flask
-
 from Database_main.route.actor_route import actor_bp
 from Database_main.route.box_office_route import box_office_bp
 from Database_main.route.country_route import country_bp
@@ -13,11 +12,6 @@ from Database_main.route.movie_genre_route import movie_genre_bp
 from Database_main.route.TableRoutes import table_bp
 
 from Database_main import create_app
-
-app = create_app()
-
-if __name__ == "__main__":
-    app.run(debug=True)
 
 app = create_app()
 
