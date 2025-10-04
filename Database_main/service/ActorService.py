@@ -7,9 +7,6 @@ class ActorService:
     def get_all_actors(self):
         return self.actor_dao.get_all()
 
-    def get_actor_by_id(self, actor_id):
-        return self.actor_dao.get_by_id(actor_id)
-
     def create_actor(self, data):
         return self.actor_dao.create(data)
 

@@ -9,13 +9,6 @@ def get_all_actors():
     return jsonify([actor.to_dict() for actor in actors]), 200
 
 
-def get_actor_by_id(actor_id):
-    actor = actor_service.get_actor_by_id(actor_id)
-    if actor:
-        return jsonify(actor.to_dict()), 200
-    return jsonify({'message': 'Actor not found'}), 404
-
-
 def create_actor():
     data = request.json
     new_actor = actor_service.create_actor(data)

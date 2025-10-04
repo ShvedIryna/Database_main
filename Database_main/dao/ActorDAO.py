@@ -7,10 +7,6 @@ class ActorDAO:
         return Actor.query.all()
 
 
-    def get_by_id(self, actor_id):
-        return Actor.query.get(actor_id)
-
-
     def create(self, data):
         new_actor = Actor(**data)
         db.session.add(new_actor)

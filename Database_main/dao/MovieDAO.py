@@ -9,10 +9,6 @@ class MovieDAO:
         return Movie.query.all()
 
 
-    def get_by_id(self, movie_id):
-        return Movie.query.get(movie_id)
-
-
     def create(self, data):
         new_movie = Movie(**data)
         db.session.add(new_movie)
