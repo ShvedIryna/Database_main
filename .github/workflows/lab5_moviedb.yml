@@ -40,7 +40,8 @@ jobs:
             cd ~/Database_main  # Перехід до вашої директорії проекту
             git pull origin lab5  # Оновлення репозиторію
             source .venv/bin/activate  # Активація віртуального середовища
-            pip install -r requirements.txt  # Оновлення залежностей
+            pip install -r Database_main/requirements.txt
             sudo systemctl restart moviedb  # Перезапуск вашого сервісу (moviedb)
             curl -f http://localhost:8000/health || exit 1  # Перевірка статусу API
             echo "✅ Deployment successful!"  # Повідомлення про успішний деплоймент
+
