@@ -1,7 +1,7 @@
 from sqlalchemy.exc import SQLAlchemyError
 from Database_main.database import db
 from sqlalchemy.sql import text
-from Database_main.models.rating import Rating, RatingLog
+from Database_main.models.rating import Rating
 from Database_main.models.user import User
 
 

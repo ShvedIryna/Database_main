@@ -22,12 +22,3 @@ class Rating(db.Model):
             "rating": self.rating,
         }
 
-
-class RatingLog(db.Model):
-    __tablename__ = 'rating_log'
-
-    log_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    rating_id = db.Column(db.Integer, nullable=False)
-    old_rating = db.Column(db.Integer, nullable=False)
-    new_rating = db.Column(db.Integer, nullable=False)
-    timestamp = db.Column(db.DateTime, default=db.func.current_timestamp(), nullable=False)
