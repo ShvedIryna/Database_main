@@ -1,7 +1,3 @@
-# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
-# More GitHub Actions for Azure: https://github.com/Azure/actions
-# More info on Python, GitHub Actions, and Azure App Service: https://aka.ms/python-webapps-actions
-
 name: Deploy to Azure VM
 
 on:
@@ -37,13 +33,29 @@ jobs:
           key: ${{ secrets.AZURE_SSH_KEY }}  # Приватний SSH ключ для підключення
           port: 22
           script: |
-            cd ~/Database_main  # Перехід до вашої директорії проекту
-            git pull origin lab5  # Оновлення репозиторію
+            # Перехід до вашої директорії проекту
+            cd ~/Database_main
+
+            # Створення та активація віртуального середовища
+            python3 -m venv .venv  # Створення віртуального середовища
             source .venv/bin/activate  # Активація віртуального середовища
+
+            # Оновлення репозиторію
+            git pull origin lab5
+
+            # Встановлення залежностей у віртуальному середовищі
             pip install -r Database_main/requirements.txt
-            sudo systemctl restart moviedb  # Перезапуск вашого сервісу (moviedb)
-            curl -f http://localhost:8000/health || exit 1  # Перевірка статусу API
-            echo "✅ Deployment successful!"  # Повідомлення про успішний деплоймент
+
+            # Перезапуск вашого сервісу (moviedb)
+            sudo systemctl restart moviedb
+
+            # Перевірка статусу API
+            curl -f http://localhost:8000/health || exit 1
+
+            # Повідомлення про успішний деплоймент
+            echo "✅ Deployment successful!"
+
+
 
 
 
