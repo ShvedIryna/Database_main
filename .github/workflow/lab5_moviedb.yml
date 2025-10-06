@@ -1,0 +1,42 @@
+name: Deploy to Azure VM
+
+on:
+  push:
+    branches:
+      - lab5  # Подія для запуску при пуші в основну гілку
+  pull_request:
+    branches:
+      - lab5  # Подія для запуску при створенні PR в основну гілку
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest  # Виконання на сервері Ubuntu
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4  # Крок для отримання коду з репозиторію
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.8  # Встановлення версії Python
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt  # Встановлення залежностей
+
+      - name: Deploy to Azure VM
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.AZURE_HOST }}  # IP-адреса вашої Azure VM
+          username: ${{ secrets.AZURE_USER }}  # Ім'я користувача для SSH доступу
+          key: ${{ secrets.AZURE_SSH_KEY }}  # Приватний SSH ключ для підключення
+          port: 22
+          script: |
+            cd ~/Database_main  # Перехід до вашої директорії проекту
+            git pull origin lab5  # Оновлення репозиторію
+            source .venv/bin/activate  # Активація віртуального середовища
+            pip install -r requirements.txt  # Оновлення залежностей
+            sudo systemctl restart moviedb  # Перезапуск вашого сервісу (moviedb)
+            curl -f http://localhost:8000/health || exit 1  # Перевірка статусу API
+            echo "✅ Deployment successful!"  # Повідомлення про успішний деплоймент
