@@ -46,14 +46,17 @@ jobs:
             # Встановлення залежностей у віртуальному середовищі
             pip install -r Database_main/requirements.txt
 
-            # Перезапуск вашого сервісу (moviedb)
-            sudo systemctl restart moviedb
+             sudo systemctl restart busapi
+
+            # Перевірити статус
+            sudo systemctl status busapi --no-pager
 
             # Перевірка статусу API
             curl -f http://localhost:8000/health || exit 1
 
             # Повідомлення про успішний деплоймент
             echo "✅ Deployment successful!"
+
 
 
 
