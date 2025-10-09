@@ -1,5 +1,5 @@
 db:
   host: localhost
-  user: root
-  password: pasle2006
-  database: MovieDB
+  user: <name>
+  password: <password>
+  database: <name_db>
