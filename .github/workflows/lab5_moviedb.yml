@@ -1,61 +1,35 @@
-name: Deploy to Azure VM
+name: Deploy to Azure Web App
 
 on:
   push:
     branches:
-      - lab5  # Подія для запуску при пуші в основну гілку
-  pull_request:
-    branches:
-      - lab5  # Подія для запуску при створенні PR в основну гілку
+      - lab5  
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest  # Виконання на сервері Ubuntu
+    runs-on: ubuntu-latest  
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4  # Крок для отримання коду з репозиторію
+        uses: actions/checkout@v2  
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v2
         with:
-          python-version: 3.8  # Встановлення версії Python
+          python-version: '3.8'  
 
       - name: Install dependencies
         run: |
-          pip install -r Database_main/requirements.txt  # Встановлення залежностей
+          python -m venv .venv 
+          source .venv/bin/activate 
+          pip install -r Database_main/requirements.txt 
 
-      - name: Deploy to Azure VM
-        uses: appleboy/ssh-action@v1.0.0
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v2
         with:
-          host: ${{ secrets.AZURE_HOST }}  # IP-адреса вашої Azure VM
-          username: ${{ secrets.AZURE_USER }}  # Ім'я користувача для SSH доступу
-          key: ${{ secrets.AZURE_SSH_KEY }}  # Приватний SSH ключ для підключення
-          port: 22
-          script: |
-            # Перехід до вашої директорії проекту
-            cd ~/Database_main
+          app-name: moviedb  
+          publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
 
-            # Створення та активація віртуального середовища
-            python3 -m venv .venv  # Створення віртуального середовища
-            source .venv/bin/activate  # Активація віртуального середовища
-
-            # Оновлення репозиторію
-            git pull origin lab5
-
-            # Встановлення залежностей у віртуальному середовищі
-            pip install -r Database_main/requirements.txt
-
-             sudo systemctl restart busapi
-
-            # Перевірити статус
-            sudo systemctl status busapi --no-pager
-
-            # Перевірка статусу API
-            curl -f http://localhost:8000/health || exit 1
-
-            # Повідомлення про успішний деплоймент
-            echo "✅ Deployment successful!"
 
 
 
