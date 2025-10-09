@@ -5,10 +5,10 @@ from Database_main.service.MovieService import MovieService
 movie_service = MovieService()
 
 @swag_from({
-    'summary': 'Отримати список всіх фільмів',
+    'summary': 'Get a list of all movies',
     'responses': {
         '200': {
-            'description': 'Успішний запит',
+            'description': 'Successful request',
             'examples': {
                 'application/json': [
                     {'movie_id': 1, 'title': 'The Matrix', 'release_year': 1999, 'duration': 126, 'genre': 'Action', 'description': 'A science fiction action movie'},
@@ -24,12 +24,12 @@ def get_all_movies():
     return jsonify([movie.to_dict() for movie in movies]), 200
 
 @swag_from({
-    'summary': 'Створити новий фільм',
+    'summary': 'Create a new movie',
     'parameters': [
         {
             'name': 'movie',
             'in': 'body',
-            'description': 'Дані нового фільму',
+            'description': 'New movie data',
             'schema': {
                 'type': 'object',
                 'properties': {
@@ -45,7 +45,7 @@ def get_all_movies():
     ],
     'responses': {
         '201': {
-            'description': 'Фільм успішно створений',
+            'description': 'Movie successfully created',
             'content': {
                 'application/json': {
                     'schema': {
@@ -70,19 +70,19 @@ def create_movie():
     return jsonify(new_movie.to_dict()), 201
 
 @swag_from({
-    'summary': 'Оновити дані фільму',
+    'summary': 'Update movie data',
     'parameters': [
         {
             'name': 'movie_id',
             'in': 'path',
-            'description': 'ID фільму, який потрібно оновити',
+            'description': 'ID of the movie to update',
             'required': True,
             'type': 'integer'
         },
         {
             'name': 'movie',
             'in': 'body',
-            'description': 'Дані для оновлення фільму',
+            'description': 'Data for updating the movie',
             'schema': {
                 'type': 'object',
                 'properties': {
@@ -97,10 +97,10 @@ def create_movie():
     ],
     'response': {
         '200': {
-            'description': 'Фільм успішно оновлений'
+            'description': 'Movie successfully update'
         },
         '404': {
-            'description': 'Фільм не знайдений'
+            'description': 'Movie not found'
         }
     }
 })
@@ -113,22 +113,22 @@ def update_movie(movie_id):
     return jsonify({'message': 'Movie not found'}), 404
 
 @swag_from({
-    'summary': 'Видалити фільм',
+    'summary': 'Delete a movie',
     'parameters': [
         {
             'name': 'movie_id',
             'in': 'path',
-            'description': 'ID фільму для видалення',
+            'description': 'ID of the movie to delete',
             'required': True,
             'type': 'integer'
         }
     ],
     'responses': {
         '200': {
-            'description': 'Фільм успішно видалений'
+            'description': 'Movie successfully deleted'
         },
         '404': {
-            'description': 'Фільм не знайдений'
+            'description': 'Movie not found'
         }
     }
 })
