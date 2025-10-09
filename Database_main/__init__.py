@@ -4,7 +4,7 @@ from Database_main.database import db
 def create_app():
     app = Flask(__name__)
 
-    app.config['SQLALCHEMY_DATABASE_URI'] = "mssql+pyodbc://CloudSA5110a274:12345iryna_@database-main.database.windows.net:1433/moviedb?driver=ODBC+Driver+17+for+SQL+Server"
+    app.config['SQLALCHEMY_DATABASE_URI'] = "mssql+pyodbc://<user>:<password>@<name>.database.windows.net:<port>/<name_db>?driver=ODBC+Driver+17+for+SQL+Server"
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     db.init_app(app)
