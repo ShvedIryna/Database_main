@@ -1,13 +1,17 @@
 ﻿blinker==1.8.2
 click==8.1.7
 colorama==0.4.6
-Flask==3.0.3
+Flask==2.3.3
 Flask-MySQLdb==2.0.0
 itsdangerous==2.2.0
 Jinja2==3.1.4
 MarkupSafe==2.1.1
 mysqlclient==2.2.4
-Werkzeug==3.0.4
-
+PyMySQL>=1.1.0
+Werkzeug==2.3.8
+flasgger==0.9.7.1
+gunicorn
+sqlalchemy
+Flask-SQLAlchemy>=3.0.0
 
 
