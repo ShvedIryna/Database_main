@@ -1,8 +1,16 @@
-from flask import request, jsonify
-from Database_main.service.MovieGenreService import MovieGenreService
+from flask import request, jsonify
 
-movie_genre_service = MovieGenreService()
+from Database_main.service.MovieGenreService import MovieGenreService
 
-def get_all_movie_genres():
-    movie_genres = movie_genre_service.get_all_movie_genres()
-    return jsonify(movie_genres), 200
+
+
+movie_genre_service = MovieGenreService()
+
+
+
+def get_all_movie_genres():
+
+    movie_genres = movie_genre_service.get_all_movie_genres()
+
+    return jsonify(movie_genres), 200
+

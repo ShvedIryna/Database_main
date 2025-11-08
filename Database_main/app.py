@@ -1,3 +1,10 @@
+import json
+import flask.json as flask_json_module
+
+if not hasattr(flask_json_module, 'JSONEncoder'):
+    flask_json_module.JSONEncoder = json.JSONEncoder
+
+from Database_main import create_app
 from flask import Flask
 from flasgger import Swagger
 from Database_main.route.actor_route import actor_bp
@@ -9,8 +16,6 @@ from Database_main.route.review_route import review_bp
 from Database_main.route.user_route import user_bp
 from Database_main.route.movie_route import movie_bp
 from Database_main.route.TableRoutes import table_bp
-
-from Database_main import create_app
 
 app = create_app()
 
@@ -28,7 +33,7 @@ swagger_template = {
     "swagger": "2.0",
     "info": {
         "title": "Movie Database API",
-        "description": "Rest Api для доступу",
+        "description": "REST API for access",
         "version": "1.0.0",
     },
     "basePath": "/api",

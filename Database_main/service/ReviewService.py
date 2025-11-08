@@ -21,7 +21,6 @@ class ReviewService:
             abort(400, description="All fields (movie_id, review_text, review_date, user_name) are required.")
 
         new_review = self.review_dao.create_review(movie_id, review_text, review_date, user_name)
-
         return new_review
 
     def delete_review(self, review_id):

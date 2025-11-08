@@ -1,0 +1,13 @@
+properties:
+  template:
+    scale:
+      minReplicas: 1
+      maxReplicas: 10
+      rules:
+        - name: cpu-scaling
+          cpu:
+            utilization: 70
+        - name: memory-scaling
+          memory:
+            utilization: 80
+
