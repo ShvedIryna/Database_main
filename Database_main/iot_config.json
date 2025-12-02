@@ -1,0 +1,55 @@
+{
+  "service_bus": {
+    "connection_string": "Endpoint=sb://YOUR_NAMESPACE.servicebus.windows.net/;SharedAccessKeyName=YOUR_KEY_NAME;SharedAccessKey=YOUR_SHARED_ACCESS_KEY",
+    "queue_name": "sensor-data-queue"
+  },
+  "sensors": [
+    {
+      "sensor_id": "photoresistor_1",
+      "sensor_type": "photoresistor",
+      "sensor_name": "Photoresistor - Room Illumination",
+      "location": {
+        "latitude": 50.4501,
+        "longitude": 30.5234,
+        "room": "Room 101"
+      },
+      "frequency_ms": 50,
+      "parameters": {
+        "light_level": {
+          "min": 0,
+          "max": 1024,
+          "unit": "lux"
+        }
+      }
+    },
+    {
+      "sensor_id": "dht22_1",
+      "sensor_type": "dht22",
+      "sensor_name": "DHT22 - Temperature and Humidity",
+      "location": {
+        "latitude": 50.4510,
+        "longitude": 30.5240,
+        "room": "Room 102"
+      },
+      "frequency_ms": 80,
+      "parameters": {
+        "temperature": {
+          "min": 18,
+          "max": 28,
+          "unit": "celsius"
+        },
+        "humidity": {
+          "min": 30,
+          "max": 70,
+          "unit": "percent"
+        }
+      }
+    }
+  ],
+  "emulation": {
+    "duration_seconds": 3600,
+    "ramp_up_seconds": 10
+  }
+}
+
+

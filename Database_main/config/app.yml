@@ -1,5 +1,0 @@
-db:
-  host: localhost
-  user: <name>
-  password: <password>
-  database: <name_db>

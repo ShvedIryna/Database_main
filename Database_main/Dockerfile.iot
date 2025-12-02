@@ -1,0 +1,18 @@
+FROM python:3.10-slim
+
+WORKDIR /app
+
+RUN apt-get update && apt-get install -y \
+    gcc \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY requirements_iot.txt .
+RUN pip install --upgrade pip && \
+    pip install --no-cache-dir -r requirements_iot.txt
+
+COPY iot_sensor_emulator.py .
+COPY iot_config.json .
+
+CMD ["python", "iot_sensor_emulator.py"]
+
+

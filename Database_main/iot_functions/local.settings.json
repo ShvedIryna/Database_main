@@ -1,0 +1,10 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "",
+    "FUNCTIONS_WORKER_RUNTIME": "python",
+    "ServiceBusConnection": "Endpoint=sb://YOUR_NAMESPACE.servicebus.windows.net/;SharedAccessKeyName=YOUR_KEY_NAME;SharedAccessKey=YOUR_SHARED_ACCESS_KEY",
+    "SqlConnectionString": "Server=YOUR_MYSQL_SERVER.mysql.database.azure.com;Port=3306;Database=YOUR_DATABASE;User ID=YOUR_USER;Password=YOUR_PASSWORD;Ssl Mode=Required;"
+  }
+}
+
